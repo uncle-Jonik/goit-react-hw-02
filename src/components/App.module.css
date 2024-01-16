@@ -1,0 +1,20 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+
+  color: #212121;
+  background-color: #a8e6cf;
+}
+
+.wrapper {
+  padding: 35px;
+
+  border-radius: 15px;
+
+  background-color: #dcedbf;
+  box-shadow: 18px 18px 38px #96a182, -18px -18px 38px #fffffc;
+}
