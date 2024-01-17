@@ -16,5 +16,13 @@ body {
   border-radius: 15px;
 
   background-color: #dcedbf;
-  box-shadow: 18px 18px 38px #96a182, -18px -18px 38px #fffffc;
+  box-shadow: 18px 18px 38px #96a182, -18px -18px 38px #ffffd7;
+}
+.buttonBox {
+  margin-top: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
