@@ -1,6 +1,7 @@
 import css from './App.module.css';
 import { useState, useEffect } from 'react';
 import { Description } from './Description/Description';
+import { Feedback } from './Feedback/Feedback';
 
 const config = {
   good: 0,
@@ -35,6 +36,7 @@ export const App = () => {
   const totalFeedback = count.good + count.bad + count.neutral;
   const positive = Math.round(((count.good + count.neutral) / totalFeedback) * 100);
   const cheakAnalogy = JSON.stringify(config) === JSON.stringify(count);
+
   return (
     <div className={css.wrapper}>
       <Description />
@@ -44,19 +46,8 @@ export const App = () => {
         <button onClick={() => handleClick('bad')}>Bad</button>
         {cheakAnalogy ? null : <button onClick={handleClickReset}>Reset</button>}
       </div>
-      <div>
-        {cheakAnalogy ? (
-          <p>No feedback yet</p>
-        ) : (
-          <>
-            <p>Good: {count.good}</p>
-            <p>Neutral: {count.neutral}</p>
-            <p>Bad: {count.bad}</p>
-            <p>Total: {totalFeedback}</p>
-            <p>Positive: {positive}</p>
-          </>
-        )}
-      </div>
+
+      <Feedback checking={cheakAnalogy} total={totalFeedback} positive={positive} obj={count} />
     </div>
   );
 };
