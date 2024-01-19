@@ -17,7 +17,7 @@ const localStorage = () => {
 };
 
 export const App = () => {
-  const [count, setCount] = useState(localStorage);
+  let [count, setCount] = useState(localStorage);
 
   useEffect(() => {
     window.localStorage.setItem('settings', JSON.stringify(count));
@@ -27,10 +27,14 @@ export const App = () => {
     setCount({ ...count, [value]: count[value] + 1 });
   };
 
-  const handleClickReset = () => {};
+  const handleClickReset = () => {
+    window.localStorage.clear();
+    setCount((count = config));
+  };
 
+  const totalFeedback = count.good + count.bad + count.neutral;
+  const positive = Math.round(((count.good + count.neutral) / totalFeedback) * 100);
   const cheakAnalogy = JSON.stringify(config) === JSON.stringify(count);
-
   return (
     <div className={css.wrapper}>
       <Description />
@@ -48,6 +52,8 @@ export const App = () => {
             <p>Good: {count.good}</p>
             <p>Neutral: {count.neutral}</p>
             <p>Bad: {count.bad}</p>
+            <p>Total: {totalFeedback}</p>
+            <p>Positive: {positive}</p>
           </>
         )}
       </div>
