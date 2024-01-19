@@ -9,36 +9,17 @@ export const App = () => {
     bad: 0,
   });
 
-  // const handleClick = event => {
-  //   const value = event.currentTarget.textContent;
-  //   setCount({ ...count, value: count.value + 1 });
-  // };
-  const handleClickGood = () => {
-    setCount({
-      ...count,
-      good: count.good + 1,
-    });
-  };
-  const handleClickNeutral = () => {
-    setCount({
-      ...count,
-      neutral: count.neutral + 1,
-    });
-  };
-  const handleClickBad = () => {
-    setCount({
-      ...count,
-      bad: count.bad + 1,
-    });
+  const handleClick = value => {
+    setCount({ ...count, [value]: count[value] + 1 });
   };
 
   return (
     <div className={css.wrapper}>
       <Description />
       <div>
-        <button onClick={handleClickGood}>good</button>
-        <button onClick={handleClickNeutral}>neutral</button>
-        <button onClick={handleClickBad}>bad</button>
+        <button onClick={() => handleClick('good')}>good</button>
+        <button onClick={() => handleClick('neutral')}>neutral</button>
+        <button onClick={() => handleClick('bad')}>bad</button>
       </div>
       <div>
         <p>good: {count.good}</p>
