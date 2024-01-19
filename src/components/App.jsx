@@ -1,13 +1,25 @@
 import css from './App.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Description } from './Description/Description';
 
-export const App = () => {
-  const [count, setCount] = useState({
+const localStorage = () => {
+  const savedObject = window.localStorage.getItem('settings');
+  if (savedObject !== null) {
+    return JSON.parse(savedObject);
+  }
+  return {
     good: 0,
     neutral: 0,
     bad: 0,
-  });
+  };
+};
+
+export const App = () => {
+  const [count, setCount] = useState(localStorage);
+
+  useEffect(() => {
+    window.localStorage.setItem('settings', JSON.stringify(count));
+  }, [count]);
 
   const handleClick = value => {
     setCount({ ...count, [value]: count[value] + 1 });
