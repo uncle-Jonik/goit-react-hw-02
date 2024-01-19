@@ -27,22 +27,27 @@ export const App = () => {
     setCount({ ...count, [value]: count[value] + 1 });
   };
 
+  const handleClickReset = () => {};
+
+  const cheakAnalogy = JSON.stringify(config) === JSON.stringify(count);
+
   return (
     <div className={css.wrapper}>
       <Description />
       <div>
-        <button onClick={() => handleClick('good')}>good</button>
-        <button onClick={() => handleClick('neutral')}>neutral</button>
-        <button onClick={() => handleClick('bad')}>bad</button>
+        <button onClick={() => handleClick('good')}>Good</button>
+        <button onClick={() => handleClick('neutral')}>Neutral</button>
+        <button onClick={() => handleClick('bad')}>Bad</button>
+        {cheakAnalogy ? null : <button onClick={handleClickReset}>Reset</button>}
       </div>
       <div>
-        {JSON.stringify(config) === JSON.stringify(count) ? (
+        {cheakAnalogy ? (
           <p>No feedback yet</p>
         ) : (
           <>
-            <p>good: {count.good}</p>
-            <p>neutral: {count.neutral}</p>
-            <p>bad: {count.bad}</p>
+            <p>Good: {count.good}</p>
+            <p>Neutral: {count.neutral}</p>
+            <p>Bad: {count.bad}</p>
           </>
         )}
       </div>
