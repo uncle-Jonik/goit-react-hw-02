@@ -26,9 +26,7 @@ export const App = () => {
   const handleClick = value => {
     setCount({ ...count, [value]: count[value] + 1 });
   };
-  console.log(config);
-  console.log(count);
-  console.log();
+
   return (
     <div className={css.wrapper}>
       <Description />
@@ -38,7 +36,7 @@ export const App = () => {
         <button onClick={() => handleClick('bad')}>bad</button>
       </div>
       <div>
-        {config === count ? (
+        {JSON.stringify(config) === JSON.stringify(count) ? (
           <p>No feedback yet</p>
         ) : (
           <>
