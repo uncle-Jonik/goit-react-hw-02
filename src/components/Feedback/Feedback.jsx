@@ -7,11 +7,15 @@ export const Feedback = ({ checking, total, positive, obj: { good, neutral, bad 
         <p>No feedback yet</p>
       ) : (
         <>
-          <p>Good: {good}</p>
-          <p>Neutral: {neutral}</p>
-          <p>Bad: {bad}</p>
-          <p>Total: {total}</p>
-          <p>Positive: {positive}%</p>
+          <div className={css.stats}>
+            <p>Good: {good}</p>
+            <p>Neutral: {neutral}</p>
+            <p>Bad: {bad}</p>
+          </div>
+          <div className={css.results}>
+            <p>Total: {total}</p>
+            <p>Positive: {positive}%</p>
+          </div>
         </>
       )}
     </div>
