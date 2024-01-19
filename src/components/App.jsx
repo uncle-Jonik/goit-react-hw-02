@@ -2,6 +2,7 @@ import css from './App.module.css';
 import { useState, useEffect } from 'react';
 import { Description } from './Description/Description';
 import { Feedback } from './Feedback/Feedback';
+import { Options } from './Options/Options';
 
 const config = {
   good: 0,
@@ -33,6 +34,7 @@ export const App = () => {
     setCount((count = config));
   };
 
+  const nameParams = Object.keys(config);
   const totalFeedback = count.good + count.bad + count.neutral;
   const positive = Math.round(((count.good + count.neutral) / totalFeedback) * 100);
   const cheakAnalogy = JSON.stringify(config) === JSON.stringify(count);
@@ -40,12 +42,13 @@ export const App = () => {
   return (
     <div className={css.wrapper}>
       <Description />
-      <div>
-        <button onClick={() => handleClick('good')}>Good</button>
-        <button onClick={() => handleClick('neutral')}>Neutral</button>
-        <button onClick={() => handleClick('bad')}>Bad</button>
-        {cheakAnalogy ? null : <button onClick={handleClickReset}>Reset</button>}
-      </div>
+
+      <Options
+        checking={cheakAnalogy}
+        onHandleClick={handleClick}
+        onHandleClickReset={handleClickReset}
+        params={nameParams}
+      />
 
       <Feedback checking={cheakAnalogy} total={totalFeedback} positive={positive} obj={count} />
     </div>
